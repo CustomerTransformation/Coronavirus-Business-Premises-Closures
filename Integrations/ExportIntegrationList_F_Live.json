@@ -1,0 +1,44 @@
+[
+    {
+        "Editable": true,
+        "ID": "5e7cbae744dfc",
+        "Name": "CM020 - Coronavirus write notification on business trading to table",
+        "Type": "DATABASE",
+        "LIM_id": "83ef69d1-2c5e-11e5-ad20-22000a7a05f5",
+        "LIM_name": "Portsmouth",
+        "Category": "Community",
+        "data_type": "integration",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"5ad8984ca953a\",\"systemName\":\"Community\",\"query\":\"EXEC coronavirusReportBusTradingWrite\\n\\t\\t\\t\\t@reference = {reference}\\n\\t\\t\\t\\t,@title = {yourDetails/Title_out}\\n\\t\\t\\t\\t,@firstName = {yourDetails/First_Name_out}\\n\\t\\t\\t\\t,@lastName = {yourDetails/Surname_out}\\n\\t\\t\\t\\t,@address = {yourDetails/AdTextArea_out}\\n\\t\\t\\t\\t,@phoneNumber = {yourDetails/Phone_Number_out}\\n\\t\\t\\t\\t,@mobile = {yourDetails/Mobile_Number_out}\\n\\t\\t\\t\\t,@email = {yourDetails/Email_Address_out}\\n\\t\\t\\t\\t,@businessName = {nameOfBusiness}\\n\\t\\t\\t\\t,@dateSeenTrading = {dateSeenTrading}\\n\\t\\t\\t\\t,@tradingNow = {TradingNow}\\n\\t\\t\\t\\t,@businessAddress = {businessAddress/AdTextArea_out}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    },
+    {
+        "Editable": true,
+        "ID": "5e7cbef08e0d4",
+        "Name": "CM021 - PDF of Coronavirus Business Premises Closures",
+        "Type": "PRINTABLE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "LIM_name": "LIM14",
+        "Category": "",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"name\":\"{reference}\",\"remove_margins\":\"\",\"setPaperType\":\"us\",\"content\":\"<style type=\\\"text/css\\\">body {\\n        font-family: arial, helvetica, sans-serif;\\n      }\\n      table {\\n        border-collapse: collapse;      /*this gets rid of the double border in the table*/\\n      }\\n       table, th, td {        /*This styling applies to all the tables*/\\n        font-family: arial, helvetica, sans-serif;\\n        border: 1px solid black;\\n        margin-left:50px;\\n        padding-left:5px;\\n        page-break-inside:avoid;     /*this makes sure that the table is kept together if the page breaks*/\\n      } \\n      table.PCCfieldsT {       /*This is the main table*/\\n        width: 85%\\n      }\\n      .PCCfieldsT tr td:nth-child(1) {    /*This styling is for the column on the left*/\\n        font-family: arial, helvetica, sans-serif;\\n        text-align: left;\\n        width: 30%;\\n        font-weight:bold;\\n        vertical-align:top;       /*The element is aligned with the top of the tallest element on the line*/\\n        padding: 5px 5px;        /* top/botom right/left */\\n      }\\n      .PCCfieldsT tr td :nth-child(2) {    /*This styling is for the column on the right*/\\n        font-family: arial, helvetica, sans-serif;\\n        width: 70%;\\n        padding: 5px 5px;\\n      }\\n      table.formName {         /*This is the table for the form name, ref number and date, which is half of the standard table*/\\n        width: 40%;\\n        margin-top:100px;\\n        margin-right:50px;\\n        text-align: left;\\n      }\\n      .formName tr  td:nth-child(1) {    /*This styling is for the column on the left*/\\n        font-family: arial, helvetica, sans-serif;\\n        font-size:15px;\\n        text-align: left;\\n        width: 30%;\\n        vertical-align:top;\\n        padding: 5px 5px;        /* top/botom right/left */\\n      }\\n      .formName tr td :nth-child(2) {    /*This styling is for the column on the right*/\\n        width: 70%;\\n        padding: 5px 5px;\\n        text-align: left;\\n      }\\n      .tabName {         /*This is the class for the tab name*/\\n        text-align: left;\\n        margin:60px 0px 10px 50px; /* top right bottom left */\\n      }\\n      .pccSection {\\n        page-break-inside:avoid;  \\n      }\\n      .pccTextArea {\\n        margin:60px 0px 10px 50px; /* top right bottom left */\\n      }\\n</style>\\n<div style=\\\"position: absolute; margin-top: 10px; margin-right:70px;top: 0; right: 20px; width: 90mm; height: 45mm; text-align: right;\\\"><img height=\\\"65\\\" src=\\\"https://fs-filestore-eu.s3.amazonaws.com/portsmouth/branding/images/logo-print.png\\\" width=\\\"221\\\" /></div>\\n\\n<div>\\n<table class=\\\"formName\\\">\\n\\t<tbody>\\n\\t\\t<tr>\\n\\t\\t\\t<th>Form name</th>\\n\\t\\t\\t<td>{form_name}</td>\\n\\t\\t</tr>\\n\\t\\t<tr>\\n\\t\\t\\t<th>Reference</th>\\n\\t\\t\\t<td>{reference}</td>\\n\\t\\t</tr>\\n\\t\\t<tr>\\n\\t\\t\\t<th>Date</th>\\n\\t\\t\\t<td>{today_en}</td>\\n\\t\\t</tr>\\n\\t</tbody>\\n</table>\\n</div>\\n\\n<div class=\\\"pccSection\\\">\\n<h3 class=\\\"tabName\\\">Your Details</h3>\\n\\n<div>{#yourDetails/SF_Sum}</div>\\n</div>\\n\\n<div class=\\\"pccSection\\\">\\n<h3 class=\\\"tabName\\\">Business details</h3>\\n\\n<table class=\\\"PCCfieldsT\\\">\\n\\t<tbody>\\n\\t\\t<tr>\\n\\t\\t\\t<td>Name of business</td>\\n\\t\\t\\t<td>{nameOfBusiness}</td>\\n\\t\\t</tr>\\n\\t\\t<tr>\\n\\t\\t\\t<td>When did you see the business trading?</td>\\n\\t\\t\\t<td>{dateSeenTrading}</td>\\n\\t\\t</tr>\\n\\t\\t<tr>\\n\\t\\t\\t<td>Is the business trading now?</td>\\n\\t\\t\\t<td>{TradingNow}</td>\\n\\t\\t</tr>\\n\\t</tbody>\\n</table>\\n<div>{#businessAddress/SF_Sum}</div>\\n</div>\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    },
+    {
+        "Editable": true,
+        "ID": "5e7cc07c1c01e",
+        "Name": "CM022 - Email PDF of Coronavirus Business Premises Closures",
+        "Type": "EMAIL",
+        "LIM_id": "83ef69d1-2c5e-11e5-ad20-22000a7a05f5",
+        "LIM_name": "Portsmouth",
+        "Category": "",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"subject\":\"Coronavirus Business Premises Closures report \",\"fromName\":\"{NoReplyEmail_N}\",\"from\":\"{NoReplyEmail}\",\"recipients_to\":\"steve.bell@portsmouthcc.gov.uk\",\"recipients_cc\":\"\",\"recipients_bcc\":\"\",\"pdf_attachments\":\"5e7cbef08e0d4\",\"body\":\"<p>PDF of form submission for Coronavirus Business Premises Closures report.</p>\\n\\n<p>Automated system email.</p>\",\"attachments\":\"\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]
